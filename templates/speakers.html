@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Speakers Roster | {{ data.event_info.name }}{% endblock %}
+
+{% block content %}
+<section class="speakers-roster" style="padding: 6rem 0;">
+    <div class="container">
+        <h1 style="text-align: center; font-size: 3rem; margin-bottom: 3rem;">Symposium Speakers</h1>
+        <div class="grid-4">
+            {% for speaker in data.speakers %}
+            <div class="speaker-card glassmorphism float-hover" style="display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                    <img src="{{ speaker.photo }}" alt="{{ speaker.name }}" style="height: 200px; width: 100%; object-fit: cover; border-radius: 8px;">
+                    <h3 style="margin-top: 1rem;">{{ speaker.name }}</h3>
+                    <p style="color: var(--accent-cyan); font-weight: 500; font-size: 0.9rem;">{{ speaker.title }}</p>
+                    <p style="color: var(--text-muted); font-size: 0.8rem; margin-bottom: 1.5rem;">{{ speaker.company }}</p>
+                </div>
+                <div>
+                    <a href="speakers/{{ speaker.slug }}.html" class="btn-register" style="font-size: 0.8rem; padding: 0.5rem 1rem; width: 100%; box-sizing: border-box; display: block; text-align: center;">View Clearance Profile</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+
+{% block title %}Symposium Schedule | {{ data.event_info.name }}{% endblock %}
+
+{% block content %}
+<section class="schedule-section" style="padding: 6rem 0;">
+    <div class="container">
+        <h1 style="text-align: center; font-size: 3rem; margin-bottom: 1rem;">Event Schedule</h1>
+        
+        <!-- Track Filters -->
+        <div style="display: flex; justify-content: center; gap: 1rem; margin-bottom: 3rem; flex-wrap: wrap;" id="track-filters">
+            <button class="btn-register filter-btn active" data-filter="All" style="background: var(--accent-cyan); color: #000 !important; box-shadow: 0 0 10px var(--accent-cyan);">All Tracks</button>
+            
+            {# Extract unique tracks from data dynamically #}
+            {% set tracks = [] %}
+            {% for day in data.schedule %}
+                {% for session in day.sessions %}
+                    {% if session.track not in tracks %}
+                        {% set _ = tracks.append(session.track) %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+            
+            {% for track in tracks %}
+            <button class="btn-register filter-btn" data-filter="{{ track }}" style="background: transparent; border: 1px solid var(--accent-cyan); color: var(--accent-cyan) !important;">{{ track }}</button>
+            {% endfor %}
+        </div>
+
+        <!-- Schedule Days -->
+        <div class="schedule-container">
+            {% for day in data.schedule %}
+            <div class="schedule-day" style="margin-bottom: 4rem;">
+                <h2 style="font-size: 2rem; border-bottom: 2px solid var(--accent-magenta); padding-bottom: 0.5rem; margin-bottom: 2rem; color: #FFF;">{{ day.date }}</h2>
+                
+                <div class="sessions-list" style="display: flex; flex-direction: column; gap: 1rem;">
+                    {% for session in day.sessions %}
+                    
+                    {# Look up speaker name based on slug #}
+                    {% set spk = namespace(name='TBA') %}
+                    {% for s in data.speakers %}
+                        {% if s.slug == session.speaker_slug %}
+                            {% set spk.name = s.name %}
+                        {% endif %}
+                    {% endfor %}
+
+                    <div class="session-row glassmorphism float-hover" data-track="{{ session.track }}" style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; padding: 1.5rem 2rem;">
+                        <div style="flex: 1; min-width: 150px;">
+                            <h3 style="color: var(--accent-cyan); margin: 0; font-size: 1.5rem;">{{ session.time }}</h3>
+                        </div>
+                        <div style="flex: 3; min-width: 250px;">
+                            <h3 style="margin: 0 0 0.5rem 0; font-size: 1.3rem;">{{ session.title }}</h3>
+                            <p style="margin: 0; color: var(--text-muted);"><i style="color: var(--accent-magenta);">By:</i> {{ spk.name }}</p>
+                        </div>
+                        <div style="flex: 1; text-align: right; min-width: 150px;">
+                            <span class="track-badge" style="display: inline-block; padding: 0.4rem 1rem; border-radius: 50px; background: rgba(0, 229, 255, 0.1); border: 1px solid var(--accent-cyan); color: var(--accent-cyan); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 1px;">
+                                {{ session.track }}
+                            </span>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const sessionRows = document.querySelectorAll('.session-row');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            // Reset active styles
+            filterBtns.forEach(b => {
+                b.style.background = 'transparent';
+                b.style.color = 'var(--accent-cyan)';
+                b.style.boxShadow = 'none';
+            });
+            // Set active style
+            btn.style.background = 'var(--accent-cyan)';
+            btn.style.color = '#000';
+            btn.style.boxShadow = '0 0 10px var(--accent-cyan)';
+
+            const filterValue = btn.getAttribute('data-filter');
+
+            // Show/Hide rows
+            sessionRows.forEach(row => {
+                if (filterValue === 'All' || row.getAttribute('data-track') === filterValue) {
+                    row.style.display = 'flex';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+    });
+});
+</script>
+{% endblock %}

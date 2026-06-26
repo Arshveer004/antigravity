@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+
+{% block title %}Levitate 2026 | {{ data.event_info.tagline }}{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <h1>{{ data.event_info.name.split(':')[0] }}</h1>
+        <div class="tagline">{{ data.event_info.tagline }}</div>
+        <div class="date-location">
+            {{ data.event_info.date }} &nbsp;|&nbsp; {{ data.event_info.location }}
+        </div>
+        
+        <p style="max-width: 800px; margin: 0 auto 2rem; font-size: 1.2rem; color: var(--text-muted);">
+            {{ data.event_info.description }}
+        </p>
+
+        <a href="register.html" class="btn-register float-continuous" style="display: inline-block; padding: 1rem 3rem; font-size: 1.2rem; border-radius: 8px;">
+            Secure Your Pass
+        </a>
+
+        <!-- Countdown Timer -->
+        <div style="display: flex; justify-content: center; width: 100%;">
+            <div class="countdown-container glassmorphism" style="margin-top: 4rem; display: inline-flex; border-radius: 100px; padding: 1.5rem 3rem;">
+                <div class="countdown-box">
+                    <span class="number" id="cd-days">00</span>
+                    <span class="label">Days</span>
+                </div>
+                <div class="countdown-box">
+                    <span class="number" id="cd-hours">00</span>
+                    <span class="label">Hours</span>
+                </div>
+                <div class="countdown-box">
+                    <span class="number" id="cd-minutes">00</span>
+                    <span class="label">Minutes</span>
+                </div>
+                <div class="countdown-box">
+                    <span class="number" id="cd-seconds">00</span>
+                    <span class="label">Seconds</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Highlights Section -->
+<section class="highlights" style="padding: 4rem 0;">
+    <div class="container">
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Event Highlights</h2>
+        <div class="grid-3">
+            <div class="glassmorphism float-hover">
+                <h3>Why Attend</h3>
+                <p>Join the avant-garde of physics and engineering. Network with pioneers, investors, and visionaries shaping the future of global transit and deep space exploration.</p>
+            </div>
+            <div class="glassmorphism float-hover">
+                <h3>Zero-G Demos</h3>
+                <p>Witness live, macroscopic demonstrations of localized gravity disruption. See theoretical physics translated into practical, hover-capable technology right before your eyes.</p>
+            </div>
+            <div class="glassmorphism float-hover">
+                <h3>Key Stats</h3>
+                <p>2 Days of intensive sessions.<br>8 Keynote Visionaries.<br>Over 500 Global Innovators.<br>1 Unified Goal: To lift humanity to the stars.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Featured Speakers Section -->
+<section class="speakers-preview" style="padding: 4rem 0; background: rgba(0, 229, 255, 0.02);">
+    <div class="container">
+        <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 1rem;">Featured Speakers</h2>
+        <div class="grid-4">
+            {% for speaker in data.speakers[:4] %}
+            <div class="speaker-card glassmorphism float-hover">
+                <img src="{{ speaker.photo }}" alt="{{ speaker.name }}">
+                <h3>{{ speaker.name }}</h3>
+                <p>{{ speaker.title }}<br>{{ speaker.company }}</p>
+                <a href="speakers/{{ speaker.slug }}.html" class="btn">View Details</a>
+            </div>
+            {% endfor %}
+        </div>
+        <div style="text-align: center; margin-top: 3rem;">
+            <a href="speakers.html" class="btn-register" style="background: transparent; border: 2px solid var(--accent-cyan); color: var(--accent-cyan) !important;">
+                View All Speakers
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

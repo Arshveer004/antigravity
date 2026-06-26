@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Clearance Profile: {{ speaker.name }} | {{ data.event_info.name }}{% endblock %}
+
+{% block content %}
+<section class="speaker-profile" style="padding: 6rem 0;">
+    <div class="container">
+        <a href="../speakers.html" style="color: var(--accent-magenta); font-family: var(--font-heading); text-transform: uppercase; letter-spacing: 2px; font-weight: 700; text-shadow: 0 0 10px rgba(255, 0, 127, 0.5); display: inline-block; margin-bottom: 2rem;">&larr; Return to Roster</a>
+        
+        <div style="display: flex; gap: 4rem; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 300px;">
+                <img src="{{ speaker.photo }}" alt="{{ speaker.name }}" class="glassmorphism float-hover" style="width: 100%; border-radius: 12px; padding: 0.5rem; box-sizing: border-box;">
+            </div>
+            <div style="flex: 2; min-width: 300px;">
+                <h1 style="font-size: 3.5rem; margin-bottom: 0.5rem; background: -webkit-linear-gradient(45deg, #FFF, var(--accent-cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">{{ speaker.name }}</h1>
+                <h3 style="color: var(--accent-magenta); margin-bottom: 0.2rem; font-size: 1.5rem;">{{ speaker.title }}</h3>
+                <h4 style="color: var(--text-muted); font-weight: 400; margin-bottom: 2rem; font-size: 1.2rem;">{{ speaker.company }}</h4>
+                
+                <div class="glassmorphism" style="margin-bottom: 3rem;">
+                    <h3 style="font-family: var(--font-body); font-size: 1.5rem; border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 0.5rem; margin-bottom: 1rem;">Biography Profile</h3>
+                    <p style="font-size: 1.1rem;">{{ speaker.bio }}</p>
+                </div>
+                
+                <div class="glassmorphism" style="border-left: 4px solid var(--accent-cyan);">
+                    <h3 style="font-family: var(--font-body); font-size: 1.5rem; color: var(--accent-cyan); margin-bottom: 0.5rem;">Symposium Presentation</h3>
+                    <h4 style="font-size: 1.3rem; margin-bottom: 1rem; color: #FFF;">"{{ speaker.talk_title }}"</h4>
+                    <p style="color: var(--text-muted);">{{ speaker.talk_abstract }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

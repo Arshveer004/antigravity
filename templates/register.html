@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+
+{% block title %}Register | {{ data.event_info.name }}{% endblock %}
+
+{% block content %}
+<section class="register-section" style="padding: 6rem 0;">
+    <div class="container">
+        <h1 style="text-align: center; font-size: 3.5rem; margin-bottom: 1rem;">Secure Your Pass</h1>
+        <p style="text-align: center; color: var(--text-muted); margin-bottom: 4rem;">Clearance applications for Levitate 2026 are now open.</p>
+        
+        <div style="max-width: 600px; margin: 0 auto; position: relative; min-height: 400px;">
+            
+            <!-- The Form -->
+            <form id="registration-form" class="glassmorphism" style="transition: opacity 0.5s ease; opacity: 1;">
+                <div style="margin-bottom: 1.5rem;">
+                    <label for="name" style="display: block; margin-bottom: 0.5rem; color: var(--accent-cyan); font-weight: 500;">Full Name</label>
+                    <input type="text" id="name" required style="width: 100%; padding: 1rem; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: #FFF; font-family: var(--font-body); font-size: 1.1rem; box-sizing: border-box;">
+                </div>
+                
+                <div style="margin-bottom: 1.5rem;">
+                    <label for="email" style="display: block; margin-bottom: 0.5rem; color: var(--accent-cyan); font-weight: 500;">Clearance Comm-Link (Email)</label>
+                    <input type="email" id="email" required style="width: 100%; padding: 1rem; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: #FFF; font-family: var(--font-body); font-size: 1.1rem; box-sizing: border-box;">
+                </div>
+
+                <div style="margin-bottom: 2.5rem;">
+                    <label for="ticket" style="display: block; margin-bottom: 0.5rem; color: var(--accent-cyan); font-weight: 500;">Access Level</label>
+                    <select id="ticket" required style="width: 100%; padding: 1rem; background: rgba(0,0,0,0.5); border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; color: #FFF; font-family: var(--font-body); font-size: 1.1rem; box-sizing: border-box; appearance: none;">
+                        <option value="" disabled selected>Select Ticket Type</option>
+                        <option value="standard" style="color:#000;">Standard Access</option>
+                        <option value="vip" style="color:#000;">VIP Zero-G Experience</option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn-register" style="width: 100%; padding: 1.2rem; font-size: 1.2rem;">Request Clearance</button>
+            </form>
+
+            <!-- Success Message (Hidden initially) -->
+            <div id="success-message" class="glassmorphism" style="display: none; text-align: center; position: absolute; top: 0; left: 0; width: 100%; box-sizing: border-box; border-color: var(--accent-cyan); animation: float 4s ease-in-out infinite;">
+                <div style="font-size: 4rem; color: var(--accent-cyan); margin-bottom: 1rem;">&#10004;</div>
+                <h2 style="color: #FFF; margin-bottom: 0.5rem;">Success: Flight Clearance Granted</h2>
+                <p style="color: var(--text-muted);">Your credentials have been securely transmitted via quantum entanglement. Await further instructions.</p>
+            </div>
+
+        </div>
+
+        <!-- FAQ Section -->
+        <div style="max-width: 800px; margin: 6rem auto 0;">
+            <h2 style="text-align: center; font-size: 2.5rem; margin-bottom: 3rem;">Frequently Asked Questions</h2>
+            
+            <style>
+                details { margin-bottom: 1rem; }
+                summary { 
+                    padding: 1.2rem; 
+                    background: rgba(20, 20, 35, 0.7); 
+                    border: 1px solid var(--accent-magenta); 
+                    border-radius: 8px; 
+                    color: #FFF; 
+                    font-family: var(--font-heading); 
+                    cursor: pointer; 
+                    list-style: none; 
+                    position: relative;
+                    transition: box-shadow 0.3s, background-color 0.3s;
+                }
+                summary::-webkit-details-marker { display: none; }
+                summary:hover { box-shadow: 0 0 15px rgba(255, 0, 127, 0.4); background: rgba(255, 0, 127, 0.1); }
+                summary::after { 
+                    content: '+'; 
+                    position: absolute; 
+                    right: 1.5rem; 
+                    top: 50%; 
+                    transform: translateY(-50%); 
+                    color: var(--accent-magenta); 
+                    font-size: 1.5rem; 
+                }
+                details[open] summary::after { content: '-'; }
+                details[open] summary { border-radius: 8px 8px 0 0; }
+                .faq-content { padding: 1.5rem; color: var(--text-muted); background: rgba(0,0,0,0.5); border-radius: 0 0 8px 8px; border: 1px solid rgba(255,255,255,0.1); border-top: none; line-height: 1.7; }
+            </style>
+
+            <details>
+                <summary>Are the levitation demos safe for pacemakers?</summary>
+                <div class="faq-content">Yes, standard demos utilize focused diamagnetic shielding. However, attendees selecting the "VIP Zero-G Experience" must sign a medical waiver, as the localized Higgs field manipulators may interfere with unsecured micro-electronics.</div>
+            </details>
+            
+            <details>
+                <summary>Is there atmospheric shielding at the venue?</summary>
+                <div class="faq-content">The AeroSpace Tech Center features full fluidic-magnetic atmospheric shielding over the main pavilion to regulate internal pressures during thrust demonstrations.</div>
+            </details>
+
+            <details>
+                <summary>Can I bring my own prototype?</summary>
+                <div class="faq-content">Small-scale (under 5kg) passive prototypes are allowed. Active zero-point extraction units are strictly prohibited on the conference floor due to European spatial distortion regulations.</div>
+            </details>
+
+            <details>
+                <summary>Will the sessions be broadcast via Sub-Etha network?</summary>
+                <div class="faq-content">Standard sessions will be recorded and distributed via conventional optical internet. We are not currently utilizing tachyon or Sub-Etha relays for broadcasting.</div>
+            </details>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const form = document.getElementById('registration-form');
+    const successMsg = document.getElementById('success-message');
+
+    if(form) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // Stop page reload
+            
+            // Fade out the form
+            form.style.opacity = '0';
+            
+            setTimeout(() => {
+                form.style.display = 'none';
+                
+                // Show the success message
+                successMsg.style.display = 'block';
+                
+                // Simple fade in effect
+                successMsg.animate([
+                    { opacity: 0, transform: 'translateY(20px)' },
+                    { opacity: 1, transform: 'translateY(0)' }
+                ], {
+                    duration: 500,
+                    easing: 'ease-out',
+                    fill: 'forwards'
+                });
+            }, 500); // Wait for the fade-out CSS transition
+        });
+    }
+});
+</script>
+{% endblock %}

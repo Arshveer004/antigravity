@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Levitate 2026{% endblock %}</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="nav-brand">Levitate<span>2026</span></a>
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="schedule.html">Schedule</a>
+            <a href="speakers.html">Speakers</a>
+            <a href="about.html">About</a>
+            <a href="venue.html">Venue</a>
+            <a href="register.html" class="btn-register">Register</a>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <h3 style="font-family: var(--font-heading); color: #FFF; margin-bottom: 1.5rem;">Powered by our Sponsors</h3>
+            <div class="sponsors">
+                <div class="sponsor">AeroDyne Systems</div>
+                <div class="sponsor">Quantum Corp</div>
+                <div class="sponsor">Gravitas Dynamics</div>
+                <div class="sponsor">Stellar Transit</div>
+            </div>
+            <p style="margin-top: 2rem; color: var(--text-muted);">&copy; 2026 Levitate Symposium. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="/static/js/main.js"></script>
+</body>
+</html>
